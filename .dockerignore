@@ -1,0 +1,46 @@
+# Системные и служебные файлы
+.git
+.gitignore
+.svn
+.hg
+
+# Настройки IDE и редакторов
+.vscode/
+.idea/
+*.sln
+*.vcxproj
+*.user
+*.suo
+
+# Временные и бинарные файлы
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+a.out
+myapp
+build/
+cmake-build-*/
+Debug/
+Release/
+
+# Документация и метаданные
+README.md
+LICENSE
+*.md
+*.txt
+*.pdf
+
+# Docker-файлы (они не нужны внутри контейнера)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Прочее
+Thumbs.db
+.DS_Store
+*.log
+temp/
