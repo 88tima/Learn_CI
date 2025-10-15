@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "docker build -t chess-moves .
+                sh "docker build -t chess-moves ."
                 sh "docker run -it chess-moves"
             }
         }
