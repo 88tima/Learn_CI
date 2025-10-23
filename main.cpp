@@ -121,6 +121,15 @@ void bishop2(int i1, int j1, int i2, int j2, string board[8][8]) {
 }
 
 int main() {
+    string startChoice;
+    cout << "Do you want to start the Chess program? (y/n): " << flush;
+    cin >> startChoice;
+
+    if (startChoice != "yes" && startChoice != "Yes" && startChoice != "y" && startChoice != "Y") {
+        cout << "Program terminated." << endl;
+        return 0;
+    }
+
     string continueChoice;
     do {
         cout << "                                    Welcome to the 'Chess' program" << endl << endl;
@@ -140,16 +149,14 @@ int main() {
             {"A1","B1","C1","D1","E1","F1","G1","H1"}
         };
         string display[8][8];
-        // Копируем board в display
         for (int i = 0; i < 8; ++i)
             for (int j = 0; j < 8; ++j)
                 display[i][j] = board[i][j];
 
-        string K1, K2;
+        string K1, K2 = "";
         int i1, j1, i2, j2;
 
-        // Ввод и валидация K1 и K2
-        cout << "Enter the address of square 1 (e.g., A1): ";
+        cout << "Enter the address of square 1 (e.g., A1): " << flush;
         cin >> K1;
         while (true) {
             int k = 0, b = 0;
@@ -169,19 +176,19 @@ int main() {
             }
             if ((k == 1 && b != 1 && K2 != "") || (K1 == K2)) {
                 cout << "You entered the second square incorrectly or it is already occupied by the first piece. Please try again below." << endl;
-                cout << "Enter the address of square 2 (e.g., F3): ";
+                cout << "Enter the address of square 2 (e.g., F3): " << flush;
                 cin >> K2;
                 cout << endl;
             }
             else if (k == 1 && K2 == "") {
-                cout << "Enter the address of square 2 (e.g., F3): ";
+                cout << "Enter the address of square 2 (e.g., F3): " << flush;
                 cin >> K2;
                 cout << endl;
             }
             else if (k != 1) {
                 cout << endl;
                 cout << "You entered the first square incorrectly. Please try again below." << endl;
-                cout << "Enter the address of square 1 (e.g., A1): ";
+                cout << "Enter the address of square 1 (e.g., A1): " << flush;
                 cin >> K1;
             }
             else if (k == 1 && b == 1) {
@@ -191,7 +198,7 @@ int main() {
 
         string F;
         while (true) {
-            cout << "Choose a piece to test (1 - queen, 2 - rook, 3 - bishop, 4 - knight): ";
+            cout << "Choose a piece to test (1 - queen, 2 - rook, 3 - bishop, 4 - knight): " << flush;
             cin >> F;
             if (F == "1" || F == "2" || F == "3" || F == "4") {
                 break;
@@ -206,11 +213,6 @@ int main() {
         cout << "FS - position of the first square." << endl;
         cout << "SS - position of the second square." << endl;
         cout << " -----------------------------------------" << endl;
-
-        // Обновляем display для отображения SC и TC
-        for (int i = 0; i < 8; ++i)
-            for (int j = 0; j < 8; ++j)
-                display[i][j] = board[i][j];
 
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
@@ -230,7 +232,6 @@ int main() {
             cout << endl << " -----------------------------------------" << endl;
         }
 
-        // Цвет клеток
         int color1 = ((i1 + j1) % 2 == 0) ? 0 : 1;
         int color2 = ((i2 + j2) % 2 == 0) ? 0 : 1;
         if (color1 == color2) {
@@ -240,7 +241,6 @@ int main() {
             cout << "1) The entered squares are of different colors." << endl << endl;
         }
 
-        // Проверка угрозы
         if (F == "1") {
             if (queen(K1, K2, i1, j1, i2, j2)) {
                 cout << "2) The queen on square 1 threatens the piece on square 2." << endl;
@@ -268,7 +268,6 @@ int main() {
         }
         cout << endl;
 
-        // Расчёт возможности создать угрозу за один ход
         knight2(i1, j1, i2, j2, board);
         rook2(i1, j1, i2, j2, board);
         bishop2(i1, j1, i2, j2, board);
@@ -317,12 +316,11 @@ int main() {
             }
         }
 
-        // Спрашиваем, продолжать ли
-        cout << "Do you want to continue? (y/n): ";
+        cout << "Do you want to continue? (y/n): " << flush;
         cin >> continueChoice;
         cout << endl;
 
-    } while (continueChoice == "y" || continueChoice == "Y");
+    } while (continueChoice == "yes" || continueChoice == "Yes" || continueChoice == "y" || continueChoice == "Y");
 
     cout << "Thank you for using the Chess program!" << endl;
     return 0;
